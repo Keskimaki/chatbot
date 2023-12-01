@@ -9,7 +9,7 @@ const DB_CONNECTION_RETRY_LIMIT = 10
 export const sequelize = new Sequelize(DATABASE_URL, { logging: false })
 
 const umzug = new Umzug({
-  migrations: { glob: 'src/server/db/migrations/*.ts' },
+  migrations: { glob: 'src/server/db/migrations/*.cjs' },
   context: sequelize.getQueryInterface(),
   storage: new SequelizeStorage({ sequelize }),
   logger: console,
@@ -30,7 +30,6 @@ const testConnection = async () => {
   await runMigrations()
 }
 
-// eslint-disable-next-line no-promise-executor-return
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export const connectToDatabase = async (attempt = 0): Promise<void | null> => {
