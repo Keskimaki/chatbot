@@ -6,17 +6,20 @@ import {
   DataTypes,
 } from 'sequelize'
 
+import { Role } from '../../types.js'
 import { sequelize } from '../connection.js'
+import { roles } from '../../util/config.js'
 
 class Message extends Model<
   InferAttributes<Message>,
   InferCreationAttributes<Message>
 > {
   declare id: CreationOptional<string>
-  declare userId: string
+  declare userId?: string
   declare chatId: string
-  declare text: string
-  declare model: string
+  declare content: string
+  declare model?: string
+  declare role: Role
 }
 
 Message.init(
@@ -28,18 +31,22 @@ Message.init(
     },
     userId: {
       type: DataTypes.UUID,
-      allowNull: false,
+      allowNull: true,
     },
     chatId: {
       type: DataTypes.UUID,
       allowNull: false,
     },
-    text: {
+    content: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     model: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    role: {
+      type: DataTypes.ENUM(...roles),
       allowNull: false,
     },
   },

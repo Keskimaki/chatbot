@@ -7,6 +7,7 @@
     "start": "docker compose up",
     "dev": "NODE_ENV=development concurrently \"nodemon --exec node --loader ts-node/esm src/server/main.ts\" \"vite\"",
     "build": "tsc && vite build",
+    "db": "docker exec -it chatbot_db psql -U postgres",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky install"

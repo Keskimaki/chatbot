@@ -11,6 +11,7 @@ import { sequelize } from '../connection.js'
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<string>
   declare username: string
+  declare isAdmin: boolean
 }
 
 User.init(
@@ -23,6 +24,10 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
