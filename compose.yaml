@@ -22,7 +22,7 @@ services:
       - 5432:5432
     volumes:
       - pg_data:/data
-    container_name: gptwrapper_db
+    container_name: chatbot_db
 
 volumes:
   pg_data:
