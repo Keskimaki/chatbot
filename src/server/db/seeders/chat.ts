@@ -3,6 +3,7 @@ import { Chat, Message } from '../models/main.js'
 
 const devChat = {
   id: 'c9b00544-9061-11ee-b9d1-0242ac120002',
+  userId: adminId,
   name: 'Development conversation',
 }
 

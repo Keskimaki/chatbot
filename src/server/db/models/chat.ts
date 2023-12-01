@@ -11,6 +11,7 @@ import { sequelize } from '../connection.js'
 class Chat extends Model<InferAttributes<Chat>, InferCreationAttributes<Chat>> {
   declare id: CreationOptional<string>
   declare name: string
+  declare userId: string
 }
 
 Chat.init(
@@ -22,6 +23,10 @@ Chat.init(
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    userId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
   },
