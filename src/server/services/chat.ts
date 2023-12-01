@@ -10,13 +10,12 @@ export const getUserChats = async (userId: string) => {
 }
 
 export const getChatAndMessages = async (chatId: string) => {
-  console.log('chatId', chatId)
   const chat = await Chat.findByPk(chatId, {
     attributes: ['id', 'name'],
     include: [
       {
         model: Message,
-        attributes: ['id', 'content', 'role', 'model'],
+        attributes: ['id', 'userId', 'content', 'role', 'model'],
         where: { chatId },
       },
     ],
