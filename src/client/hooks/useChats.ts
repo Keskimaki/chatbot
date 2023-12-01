@@ -15,7 +15,7 @@ const useChats = () => {
 
   const { data: chats, ...rest } = useQuery({ queryKey, queryFn })
 
-  return { chats: chats, ...rest }
+  return { chats: chats ?? [], ...rest }
 }
 
 export default useChats
