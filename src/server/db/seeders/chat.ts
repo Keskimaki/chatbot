@@ -1,5 +1,5 @@
-import { adminId } from './user.js'
-import { Chat, Message } from '../models/index.js'
+import { adminId } from './user'
+import { Chat, Message } from '../models/index'
 
 const devChat = {
   id: 'c9b00544-9061-11ee-b9d1-0242ac120002',

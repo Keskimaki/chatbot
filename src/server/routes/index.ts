@@ -1,10 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 
-import { inDevelopment } from '../../config.js'
-import developmentMiddleware from '../middleware/development.js'
-import openaiRouter from './openai.js'
-import chatRouter from './chat.js'
+import { inDevelopment } from '../../config'
+import developmentMiddleware from '../middleware/development'
+import openaiRouter from './openai'
+import chatRouter from './chat'
 
 const router = express()
 

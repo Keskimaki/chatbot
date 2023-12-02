@@ -1,6 +1,6 @@
 import winston from 'winston'
 
-import { inProduction } from '../../config.js'
+import { inProduction } from '../../config'
 
 const { combine, timestamp, printf, splat } = winston.format
 

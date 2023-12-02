@@ -6,7 +6,7 @@ import {
   DataTypes,
 } from 'sequelize'
 
-import { sequelize } from '../connection.js'
+import { sequelize } from '../connection'
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<string>

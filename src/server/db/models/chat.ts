@@ -6,7 +6,7 @@ import {
   DataTypes,
 } from 'sequelize'
 
-import { sequelize } from '../connection.js'
+import { sequelize } from '../connection'
 
 class Chat extends Model<InferAttributes<Chat>, InferCreationAttributes<Chat>> {
   declare id: CreationOptional<string>

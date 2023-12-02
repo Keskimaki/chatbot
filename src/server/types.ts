@@ -1,3 +1,3 @@
-import { roles } from './util/config.js'
+import { roles } from './util/config'
 
 export type Role = (typeof roles)[number]

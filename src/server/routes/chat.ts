@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { getUserChats, getChatAndMessages } from '../services/chat.js'
+import { getUserChats, getChatAndMessages } from '../services/chat'
 
 const chatRouter = express()
 

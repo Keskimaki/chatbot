@@ -1,4 +1,4 @@
-import { User } from '../models/index.js'
+import { User } from '../models/index'
 
 export const adminId = 'd27936a6-9060-11ee-b9d1-0242ac120002'
 

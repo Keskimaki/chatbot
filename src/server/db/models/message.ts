@@ -6,9 +6,9 @@ import {
   DataTypes,
 } from 'sequelize'
 
-import { Role } from '../../types.js'
-import { sequelize } from '../connection.js'
-import { roles } from '../../util/config.js'
+import { Role } from '../../types'
+import { sequelize } from '../connection'
+import { roles } from '../../util/config'
 
 class Message extends Model<
   InferAttributes<Message>,

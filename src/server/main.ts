@@ -1,10 +1,10 @@
 import express from 'express'
 
-import { inDevelopment } from '../config.js'
-import { PORT } from './util/config.js'
-import { connectToDatabase } from './db/connection.js'
-import seed from './db/seeders/index.js'
-import router from './routes/index.js'
+import { inDevelopment } from '../config'
+import { PORT } from './util/config'
+import { connectToDatabase } from './db/connection'
+import seed from './db/seeders/index'
+import router from './routes/index'
 
 const app = express()
 

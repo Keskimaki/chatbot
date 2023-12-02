@@ -1,5 +1,5 @@
-import seedUsers from './user.js'
-import seedChats from './chat.js'
+import seedUsers from './user'
+import seedChats from './chat'
 
 const seed = async () => {
   await seedUsers()

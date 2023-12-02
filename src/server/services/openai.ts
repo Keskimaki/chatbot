@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/await-thenable */
 import OpenAI from 'openai'
 
-import { OPENAI_API_KEY } from '../util/config.js'
+import { OPENAI_API_KEY } from '../util/config'
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,

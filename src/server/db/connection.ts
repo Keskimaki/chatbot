@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 import { Sequelize } from 'sequelize'
 import { Umzug, SequelizeStorage } from 'umzug'
 
-import logger from '../util/logger.js'
-import { DATABASE_URL } from '../util/config.js'
+import logger from '../util/logger'
+import { DATABASE_URL } from '../util/config'
 
 const DB_CONNECTION_RETRY_LIMIT = 10
 

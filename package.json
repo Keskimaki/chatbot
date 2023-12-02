@@ -2,10 +2,9 @@
   "name": "chatbot",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "start": "docker compose up",
-    "dev": "NODE_ENV=development concurrently \"nodemon --exec node --loader ts-node/esm src/server/main.ts\" \"vite\"",
+    "dev": "NODE_ENV=development concurrently \"nodemon --exec node --loader @swc-node/register/esm src/server/main.ts\" \"vite\"",
     "build": "tsc && vite build",
     "db": "docker exec -it chatbot_db psql -U postgres",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -41,12 +40,13 @@
     "react-router-dom": "^6.20.1",
     "remark-gfm": "^4.0.0",
     "sequelize": "^6.35.1",
-    "ts-node": "^10.9.1",
     "umzug": "^3.4.0",
     "winston": "^3.11.0"
   },
   "devDependencies": {
+    "@swc-node/register": "^1.6.8",
     "@tanstack/react-query-devtools": "^5.12.1",
+    "@tsconfig/node20": "^20.1.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.1",

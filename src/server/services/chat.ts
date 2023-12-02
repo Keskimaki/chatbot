@@ -1,4 +1,4 @@
-import { Chat, Message } from '../db/models/index.js'
+import { Chat, Message } from '../db/models/index'
 
 export const getUserChats = async (userId: string) => {
   const chats = await Chat.findAll({

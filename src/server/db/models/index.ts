@@ -1,6 +1,6 @@
-import User from './user.js'
-import Chat from './chat.js'
-import Message from './message.js'
+import User from './user'
+import Chat from './chat'
+import Message from './message'
 
 User.hasMany(Chat)
 Chat.belongsTo(User)

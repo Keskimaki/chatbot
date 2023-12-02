@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { adminId } from '../db/seeders/user.js'
-import { User } from '../db/models/index.js'
+import { adminId } from '../db/seeders/user'
+import { User } from '../db/models/index'
 
 const getDevUser = async () => {
   const devUser = await User.findByPk(adminId, {
