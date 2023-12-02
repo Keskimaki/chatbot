@@ -68,6 +68,7 @@ const Chat = () => {
         sx={{
           padding: '5% 10%',
           mt: 5,
+          border: '1px solid #ccc',
         }}
       >
         <SystemMessage

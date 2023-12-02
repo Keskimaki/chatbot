@@ -1,3 +1,5 @@
+import { Theme } from '@mui/material/styles'
+
 const styles = {
   supportBox: {
     py: '2rem',
@@ -6,13 +8,15 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  footer: {
+  footer: (theme: Theme) => ({
     top: 'auto',
     bottom: 0,
     position: 'fixed',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.palette.background.default,
     width: '100%',
-  },
+    borderRadius: 0,
+    borderTop: '1px solid #ccc',
+  }),
 }
 
 export default styles
