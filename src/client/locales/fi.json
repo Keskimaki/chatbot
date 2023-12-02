@@ -1,5 +1,8 @@
 {
   "common": {
     "appName": "Chatbot"
+  },
+  "footer": {
+    "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>"
   }
 }

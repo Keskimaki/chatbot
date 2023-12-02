@@ -1,7 +1,7 @@
-import { Box, Typography, List, ListItem } from '@mui/material'
+import { Container, Typography, List, ListItem } from '@mui/material'
 
-import useChats from './hooks/useChats'
-import Loading from './components/Loading'
+import useChats from '../hooks/useChats'
+import Loading from '../components/common/Loading'
 
 const App = () => {
   const { chats, isLoading } = useChats()
@@ -9,14 +9,14 @@ const App = () => {
   if (isLoading) return <Loading />
 
   return (
-    <Box>
+    <Container>
       <Typography variant="h4">Chats</Typography>
       <List>
         {chats.map(({ id, name }) => (
           <ListItem key={id}>{name}</ListItem>
         ))}
       </List>
-    </Box>
+    </Container>
   )
 }
 
