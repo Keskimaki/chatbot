@@ -1,3 +1,6 @@
-import { roles } from './util/config'
+import { OpenaiMessage } from '../types'
 
-export type Role = (typeof roles)[number]
+export type ChatOptions = {
+  messages: OpenaiMessage[]
+  model: string
+}

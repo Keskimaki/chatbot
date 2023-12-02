@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { Box, Paper } from '@mui/material'
 
+import { OpenaiMessage } from '../../../types'
 import SystemMessage from './SystemMessage'
 import Conversation from './Conversation'
 import SendMessage from './SendMessage'
+import { getCompletionStream } from '../../services/openai'
 
 const Chat = () => {
   const [system, setSystem] = useState('')
   const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState<any[]>([])
+  const [messages, setMessages] = useState<OpenaiMessage[]>([])
   const [completion, setCompletion] = useState('')
 
   const handleReset = () => {
@@ -18,7 +20,35 @@ const Chat = () => {
     setCompletion('')
   }
 
-  const handleSend = () => null
+  const handleSend = async () => {
+    const newMessage: OpenaiMessage = { role: 'user', content: message }
+    setMessages((prev) => [...prev, newMessage])
+    setMessage('')
+
+    const stream = await getCompletionStream(
+      'gpt-3.5-turbo',
+      system,
+      messages.concat(newMessage)
+    )
+
+    const reader = stream.getReader()
+
+    let content = ''
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const { value, done } = await reader.read()
+
+      if (done) break
+
+      const text = new TextDecoder().decode(value)
+
+      setCompletion((prev) => prev + text)
+      content += text
+    }
+
+    setMessages((prev) => [...prev, { role: 'assistant', content }])
+    setCompletion('')
+  }
 
   const systemMessageDisabled = messages.length > 0
   const sendDisabled = message.length === 0 || completion !== ''

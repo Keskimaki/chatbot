@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useTranslation } from 'react-i18next'
 
-import { Message } from '../../types'
+import { OpenaiMessage } from '../../../types'
 
 export const Response = ({ role, content }: { role: any; content: string }) => {
   const isUser = role === 'user'
@@ -35,7 +35,7 @@ const Conversation = ({
   messages,
   completion,
 }: {
-  messages: Message[]
+  messages: OpenaiMessage[]
   completion: string
 }) => {
   const { t } = useTranslation()
