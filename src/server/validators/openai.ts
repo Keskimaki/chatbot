@@ -22,3 +22,7 @@ export const chatOptionsSchema = z.object({
 export const openaiStreamSchema = chatOptionsSchema.extend({
   chatId: z.string().uuid(),
 })
+
+export const chatTitleSchema = z.object({
+  title: z.string().min(1),
+})

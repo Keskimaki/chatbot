@@ -2,7 +2,8 @@ import express from 'express'
 import { z } from 'zod'
 
 import { messageSchema, openaiStreamSchema } from '../validators/openai'
-import { createCompletionStream } from '../services/openai'
+import { createCompletionStream, generateChatTitle } from '../services/openai'
+import { getChatAndMessages, updateChatTitle } from '../services/chat'
 import { saveUserMessage, saveOpenaiMessage } from '../services/message'
 
 const openaiRouter = express()
@@ -28,6 +29,21 @@ openaiRouter.post('/stream', async (req, res) => {
   await saveOpenaiMessage(user.id, chatId, model, chatCompletion)
 
   res.end()
+})
+
+openaiRouter.post('/title/:chatId', async (req, res) => {
+  const { user } = req
+  const { chatId } = req.params
+
+  const chat = await getChatAndMessages(chatId)
+
+  if (!chat) return res.sendStatus(404)
+  if (chat.userId !== user.id) return res.sendStatus(403)
+
+  const title = await generateChatTitle(chat.messages)
+  await updateChatTitle(chatId, title)
+
+  return res.send({ title })
 })
 
 export default openaiRouter

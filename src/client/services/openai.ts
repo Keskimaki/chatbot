@@ -1,5 +1,8 @@
 import { OpenaiMessage } from '../../types'
 
+import queryClient from '../util/queryClient'
+import { queryKey } from '../hooks/useChats'
+
 export const getCompletionStream = async (
   chatId: string,
   model: string,
@@ -27,4 +30,16 @@ export const getCompletionStream = async (
   const stream = response.body as ReadableStream<Uint8Array>
 
   return stream
+}
+
+export const generateChatTitle = async (chatId: string) => {
+  const response = await fetch(`/api/openai/title/${chatId}`, {
+    method: 'POST',
+  })
+
+  const { title } = (await response.json()) as { title: string }
+
+  queryClient.invalidateQueries({ queryKey })
+
+  return title
 }

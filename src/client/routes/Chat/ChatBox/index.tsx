@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { Box, Paper } from '@mui/material'
 
@@ -6,10 +7,14 @@ import { OpenaiMessage } from '../../../../types'
 import SystemMessage from './SystemMessage'
 import Conversation from './Conversation'
 import SendMessage from './SendMessage'
-import { getCompletionStream } from '../../../services/openai'
+import {
+  getCompletionStream,
+  generateChatTitle,
+} from '../../../services/openai'
 import useChat from '../../../hooks/useChat'
 
 const ChatBox = () => {
+  const { t } = useTranslation()
   const { chatId } = useParams()
   const { chat, isLoading } = useChat(chatId)
 
@@ -25,7 +30,7 @@ const ChatBox = () => {
     }
   }, [chat])
 
-  if (isLoading) return null
+  if (isLoading || !chat) return null
 
   const handleSend = async () => {
     const newMessage: OpenaiMessage = { role: 'user', content: message }
@@ -56,6 +61,9 @@ const ChatBox = () => {
 
     setMessages((prev) => [...prev, { role: 'assistant', content }])
     setCompletion('')
+
+    if (chat.name === t('chat:newConversation'))
+      await generateChatTitle(chatId as string)
   }
 
   const systemMessageDisabled = messages.length > 0
