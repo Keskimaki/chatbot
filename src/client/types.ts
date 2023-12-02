@@ -1,3 +1,5 @@
+import { OpenaiMessage } from '../types'
+
 export type Set<T> = React.Dispatch<React.SetStateAction<T>>
 
 export type Chat = {
@@ -5,11 +7,9 @@ export type Chat = {
   name: string
 }
 
-export type Message = {
+export type Message = OpenaiMessage & {
   id: string
   userId: string
-  content: string
-  role: string
   model: string
 }
 

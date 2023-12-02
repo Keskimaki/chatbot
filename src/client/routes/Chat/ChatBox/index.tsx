@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Box, Paper } from '@mui/material'
 
@@ -7,14 +7,25 @@ import SystemMessage from './SystemMessage'
 import Conversation from './Conversation'
 import SendMessage from './SendMessage'
 import { getCompletionStream } from '../../../services/openai'
+import useChat from '../../../hooks/useChat'
 
 const ChatBox = () => {
   const { chatId } = useParams()
+  const { chat, isLoading } = useChat(chatId)
 
   const [system, setSystem] = useState('')
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<OpenaiMessage[]>([])
   const [completion, setCompletion] = useState('')
+
+  useEffect(() => {
+    if (chat && chat.messages.length > 0) {
+      setSystem(chat.messages[0].content)
+      setMessages(chat.messages.slice(1))
+    }
+  }, [chat])
+
+  if (isLoading) return null
 
   const handleReset = () => {
     setSystem('')
