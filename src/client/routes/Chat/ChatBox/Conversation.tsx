@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useTranslation } from 'react-i18next'
 
-import { OpenaiMessage } from '../../../types'
+import { OpenaiMessage } from '../../../../types'
 
 export const Response = ({ role, content }: { role: any; content: string }) => {
   const isUser = role === 'user'

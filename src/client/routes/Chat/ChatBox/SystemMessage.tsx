@@ -1,7 +1,7 @@
 import { Box, TextField, Typography, Tooltip } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-import { Set } from '../../types'
+import { Set } from '../../../types'
 
 const Info = () => {
   const { t } = useTranslation()
