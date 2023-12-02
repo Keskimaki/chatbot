@@ -2,6 +2,21 @@ import OpenAI from 'openai'
 
 import { Message } from '../db/models'
 
+export const saveSystemMessage = async (
+  userId: string,
+  chatId: string,
+  content: string
+) => {
+  const savedMessage = await Message.create({
+    userId,
+    chatId,
+    content,
+    role: 'system',
+  })
+
+  return savedMessage
+}
+
 export const saveUserMessage = async (
   userId: string,
   chatId: string,

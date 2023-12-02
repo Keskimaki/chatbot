@@ -1,10 +1,13 @@
 import express from 'express'
-import { z } from 'zod'
 
-import { messageSchema, openaiStreamSchema } from '../validators/openai'
+import { openaiStreamSchema } from '../validators/openai'
 import { createCompletionStream, generateChatTitle } from '../services/openai'
 import { getChatAndMessages, updateChatTitle } from '../services/chat'
-import { saveUserMessage, saveOpenaiMessage } from '../services/message'
+import {
+  saveSystemMessage,
+  saveUserMessage,
+  saveOpenaiMessage,
+} from '../services/message'
 
 const openaiRouter = express()
 
@@ -22,9 +25,12 @@ openaiRouter.post('/stream', async (req, res) => {
     res.write(delta)
   })
 
-  const newMessage = messages.at(-1) as z.infer<typeof messageSchema>
+  const systemMessage = messages.at(0)
+  const newMessage = messages.at(-1)
   const chatCompletion = await stream.finalChatCompletion()
 
+  if (messages.length === 2)
+    await saveSystemMessage(user.id, chatId, systemMessage.content)
   await saveUserMessage(user.id, chatId, newMessage.content)
   await saveOpenaiMessage(user.id, chatId, model, chatCompletion)
 
