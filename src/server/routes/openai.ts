@@ -2,11 +2,13 @@ import express from 'express'
 
 import { openaiStreamSchema } from '../validators/openai'
 import { createCompletionStream } from '../services/openai'
+import { saveOpenaiMessage } from '../services/message'
 
 const openaiRouter = express()
 
 openaiRouter.post('/stream', async (req, res) => {
-  const { model, messages } = openaiStreamSchema.parse(req.body)
+  const { user } = req
+  const { chatId, model, messages } = openaiStreamSchema.parse(req.body)
 
   // TODO: Add authentication etc.
 
@@ -18,7 +20,8 @@ openaiRouter.post('/stream', async (req, res) => {
     res.write(delta)
   })
 
-  await stream.finalChatCompletion()
+  const chatCompletion = await stream.finalChatCompletion()
+  await saveOpenaiMessage(user.id, chatId, model, chatCompletion)
 
   res.end()
 })
