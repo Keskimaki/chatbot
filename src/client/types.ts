@@ -1,3 +1,5 @@
+export type Set<T> = React.Dispatch<React.SetStateAction<T>>
+
 export type Chat = {
   id: string
   name: string

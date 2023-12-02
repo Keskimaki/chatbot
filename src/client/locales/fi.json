@@ -1,8 +1,17 @@
 {
   "common": {
-    "appName": "Chatbot"
+    "appName": "Chatbot",
+    "send": "Lähetä",
+    "reset": "Tyhjennä"
   },
   "footer": {
     "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>"
+  },
+  "chat": {
+    "systemMessage": "Ohjeistus",
+    "systemMessageInfo": "Alusta keskustelu antamalla yleistason ohjeita tekoälylle.",
+    "exampleSystemMessage": "esim. Olet avulias avustaja.",
+    "message": "Viesti",
+    "messagePlaceholder": "Kirjoita viesti tähän."
   }
 }
