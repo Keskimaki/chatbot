@@ -3,6 +3,7 @@ import cors from 'cors'
 
 import { inDevelopment } from '../../config.js'
 import developmentMiddleware from '../middleware/development.js'
+import openaiRouter from './openai.js'
 import chatRouter from './chat.js'
 
 const router = express()
@@ -14,6 +15,7 @@ if (inDevelopment) router.use(developmentMiddleware)
 
 router.get('/ping', (_, res) => res.send('pong'))
 
+router.use('/openai', openaiRouter)
 router.use('/chats', chatRouter)
 
 export default router
