@@ -1,12 +1,12 @@
 import express from 'express'
 
-import { ChatOptions } from '../types'
+import { openaiStreamSchema } from '../validators/openai'
 import { createCompletionStream } from '../services/openai'
 
 const openaiRouter = express()
 
 openaiRouter.post('/stream', async (req, res) => {
-  const { model, messages } = req.body as ChatOptions
+  const { model, messages } = openaiStreamSchema.parse(req.body)
 
   // TODO: Add authentication etc.
 

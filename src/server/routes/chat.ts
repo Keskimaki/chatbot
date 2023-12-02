@@ -1,6 +1,7 @@
 import express from 'express'
 
-import { getUserChats, getChatAndMessages } from '../services/chat'
+import { getUserChats, getChatAndMessages, newChat } from '../services/chat'
+import { newChatSchema } from '../validators/chat'
 
 const chatRouter = express()
 
@@ -20,6 +21,15 @@ chatRouter.get('/:chatId', async (req, res) => {
 
   if (!chat) return res.sendStatus(404)
   if (chat.userId !== user.id) return res.sendStatus(403)
+
+  return res.send(chat)
+})
+
+chatRouter.post('/', async (req, res) => {
+  const { user } = req
+  const { name } = newChatSchema.parse(req.body)
+
+  const chat = await newChat(user.id, name)
 
   return res.send(chat)
 })

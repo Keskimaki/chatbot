@@ -23,3 +23,9 @@ export const getChatAndMessages = async (chatId: string) => {
 
   return chat
 }
+
+export const newChat = async (userId: string, name: string) => {
+  const chat = await Chat.create({ userId, name })
+
+  return chat
+}

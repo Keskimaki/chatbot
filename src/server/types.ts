@@ -1,6 +1,5 @@
-import { OpenaiMessage } from '../types'
+import { z } from 'zod'
 
-export type ChatOptions = {
-  messages: OpenaiMessage[]
-  model: string
-}
+import { chatOptionsSchema } from './validators/openai'
+
+export type ChatOptions = z.infer<typeof chatOptionsSchema>
