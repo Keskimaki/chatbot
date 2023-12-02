@@ -1,5 +1,5 @@
 import { adminId } from './user.js'
-import { Chat, Message } from '../models/main.js'
+import { Chat, Message } from '../models/index.js'
 
 const devChat = {
   id: 'c9b00544-9061-11ee-b9d1-0242ac120002',
@@ -33,9 +33,9 @@ const messages = [
 const seedChats = async () => {
   await Chat.upsert({ ...devChat })
 
-  messages.forEach(async (message) => {
+  for (const message of messages) {
     await Message.upsert({ ...message })
-  })
+  }
 }
 
 export default seedChats

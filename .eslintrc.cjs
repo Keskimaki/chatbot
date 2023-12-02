@@ -17,6 +17,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "@typescript-eslint/no-explicit-any": 'off',
+    "@typescript-eslint/no-misused-promises": 'off',
   },
   parserOptions: {
     ecmaVersion: 'latest',

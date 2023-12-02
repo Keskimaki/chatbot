@@ -3,8 +3,8 @@ import express from 'express'
 import { inDevelopment } from '../config.js'
 import { PORT } from './util/config.js'
 import { connectToDatabase } from './db/connection.js'
-import seed from './db/seeders/main.js'
-import router from './routes/main.js'
+import seed from './db/seeders/index.js'
+import router from './routes/index.js'
 
 const app = express()
 

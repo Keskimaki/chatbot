@@ -10,13 +10,15 @@ transports.push(new winston.transports.File({ filename: 'debug.log' }))
 
 if (!inProduction) {
   const devFormat = printf(({ level, message, timestamp, ...rest }) => {
+    let output = ''
+
     try {
-      rest = JSON.stringify(rest) as any
+      output = `${timestamp} ${level}: ${message} ${JSON.stringify(rest)}`
     } catch {
-      null
+      output = `${timestamp} ${level}: ${message}`
     }
 
-    return `${timestamp} ${level}: ${message} ${rest}`
+    return output
   })
 
   transports.push(

@@ -1,4 +1,4 @@
-import { User } from '../models/main.js'
+import { User } from '../models/index.js'
 
 export const adminId = 'd27936a6-9060-11ee-b9d1-0242ac120002'
 
@@ -11,9 +11,9 @@ const users = [
 ]
 
 const seedUsers = async () => {
-  users.forEach(async (user) => {
+  for (const user of users) {
     await User.upsert({ ...user })
-  })
+  }
 }
 
 export default seedUsers

@@ -1,5 +1,7 @@
+import { Request, Response, NextFunction } from 'express'
+
 import { adminId } from '../db/seeders/user.js'
-import { User } from '../db/models/main.js'
+import { User } from '../db/models/index.js'
 
 const getDevUser = async () => {
   const devUser = await User.findByPk(adminId, {
@@ -10,7 +12,11 @@ const getDevUser = async () => {
 }
 
 // Simulate a logged in user in development.
-const developmentMiddleware = async (req: any, _: any, next: any) => {
+const developmentMiddleware = async (
+  req: Request,
+  _: Response,
+  next: NextFunction
+) => {
   const devUser = (await getDevUser()) as User
 
   const { id, username, isAdmin } = devUser
