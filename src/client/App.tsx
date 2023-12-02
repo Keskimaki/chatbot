@@ -1,3 +1,5 @@
+import { Box, Typography, List, ListItem } from '@mui/material'
+
 import useChats from './hooks/useChats'
 
 const App = () => {
@@ -9,14 +11,14 @@ const App = () => {
   console.log(chats)
 
   return (
-    <div>
-      <h1>Chats</h1>
-      <ul>
+    <Box>
+      <Typography variant="h4">Chats</Typography>
+      <List>
         {chats.map(({ id, name }) => (
-          <li key={id}>{name}</li>
+          <ListItem key={id}>{name}</ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   )
 }
 
