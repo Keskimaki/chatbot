@@ -1,12 +1,28 @@
 import { Chat, Message } from '../db/models/index'
 
+type ChatWithMessages = Chat & {
+  messages: Message[]
+}
+
 export const getUserChats = async (userId: string) => {
-  const chats = await Chat.findAll({
+  const chats = (await Chat.findAll({
     attributes: ['id', 'name'],
     where: { userId },
-  })
+    include: [
+      {
+        model: Message,
+        as: 'messages',
+        attributes: ['id'],
+      },
+    ],
+  })) as ChatWithMessages[]
 
-  return chats
+  const chatsWithMessageCounts = chats.map((chat) => ({
+    ...chat.toJSON(),
+    messageCount: chat.messages.length,
+  }))
+
+  return chatsWithMessageCounts
 }
 
 export const getChatAndMessages = async (chatId: string) => {
@@ -15,6 +31,7 @@ export const getChatAndMessages = async (chatId: string) => {
     include: [
       {
         model: Message,
+        as: 'messages',
         attributes: ['id', 'userId', 'content', 'role', 'model'],
         where: { chatId },
       },

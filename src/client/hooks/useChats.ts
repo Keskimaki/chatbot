@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { Chat } from '../types'
+import { ChatWithMessageCount } from '../types'
 
 export const queryKey = ['chats']
 
 const useChats = () => {
-  const queryFn = async (): Promise<Chat[]> => {
+  const queryFn = async () => {
     const res = await fetch('/api/chats')
 
-    const data = await res.json()
+    const data = (await res.json()) as ChatWithMessageCount[]
 
     return data
   }

@@ -1,6 +1,7 @@
 import { OpenaiMessage } from '../../types'
 
 export const getCompletionStream = async (
+  chatId: string,
   model: string,
   system: string,
   messages: OpenaiMessage[]
@@ -11,6 +12,7 @@ export const getCompletionStream = async (
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      chatId,
       model,
       messages: [
         {

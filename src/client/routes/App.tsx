@@ -1,23 +1,40 @@
-import { Container, Typography, List, ListItem } from '@mui/material'
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import useChats from '../hooks/useChats'
 import Loading from '../components/common/Loading'
+//import useCurrentUser from '../hooks/useCurrentUser'
+import useChats from '../hooks/useChats'
+import { useCreateChatMutation } from '../hooks/useChatMutation'
 
 const App = () => {
-  const { chats, isLoading } = useChats()
+  const { t } = useTranslation()
+  const { chatId } = useParams()
 
-  if (isLoading) return <Loading />
+  //const { user, isLoading: userLoading } = useCurrentUser()
+  const { chats, isLoading: chatsLoading } = useChats()
 
-  return (
-    <Container>
-      <Typography variant="h4">Chats</Typography>
-      <List>
-        {chats.map(({ id, name }) => (
-          <ListItem key={id}>{name}</ListItem>
-        ))}
-      </List>
-    </Container>
-  )
+  const navigate = useNavigate()
+  const mutation = useCreateChatMutation()
+
+  useEffect(() => {
+    if (chatId) return
+
+    const createNewChat = async () => {
+      const { id } = await mutation.mutateAsync(t('chat:newConversation'))
+      return navigate(`/c/${id}`)
+    }
+
+    if (!chatsLoading) {
+      const newChat = chats.find(({ messageCount }) => messageCount === 0)
+
+      if (newChat) return navigate(`/c/${newChat.id}`)
+
+      createNewChat()
+    }
+  }, [chatId, chats])
+
+  if (chatsLoading) return <Loading />
 }
 
 export default App

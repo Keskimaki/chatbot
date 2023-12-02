@@ -13,6 +13,7 @@
     "exampleSystemMessage": "esim. Olet avulias avustaja.",
     "message": "Viesti",
     "messagePlaceholder": "Kirjoita viesti tähän.",
-    "conversation": "Keskustelu"
+    "conversation": "Keskustelu",
+    "newConversation": "Uusi keskustelu"
   }
 }

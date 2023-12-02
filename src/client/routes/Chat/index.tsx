@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Box, Paper } from '@mui/material'
 
 import { OpenaiMessage } from '../../../types'
@@ -8,6 +9,8 @@ import SendMessage from './SendMessage'
 import { getCompletionStream } from '../../services/openai'
 
 const Chat = () => {
+  const { chatId } = useParams()
+
   const [system, setSystem] = useState('')
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<OpenaiMessage[]>([])
@@ -26,6 +29,7 @@ const Chat = () => {
     setMessage('')
 
     const stream = await getCompletionStream(
+      chatId as string,
       'gpt-3.5-turbo',
       system,
       messages.concat(newMessage)

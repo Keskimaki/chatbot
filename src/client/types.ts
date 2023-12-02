@@ -14,5 +14,15 @@ export type Message = {
 }
 
 export type ChatWithMessages = Chat & {
-  Messages: Message[]
+  messages: Message[]
+}
+
+export type ChatWithMessageCount = Chat & {
+  messageCount: number
+}
+
+export type User = {
+  id: string
+  username: string
+  isAdmin: boolean
 }
