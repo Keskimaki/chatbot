@@ -1,14 +1,12 @@
 import { Box, Typography, List, ListItem } from '@mui/material'
 
 import useChats from './hooks/useChats'
+import Loading from './components/Loading'
 
 const App = () => {
   const { chats, isLoading } = useChats()
 
-  // TODO: Add loading indicator
-  if (isLoading) return null
-
-  console.log(chats)
+  if (isLoading) return <Loading />
 
   return (
     <Box>
