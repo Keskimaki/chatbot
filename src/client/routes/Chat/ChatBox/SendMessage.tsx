@@ -7,19 +7,10 @@ type Props = {
   message: string
   setMessage: Set<string>
   handleSend: () => void
-  handleReset: () => void
   disabled: boolean
-  resetDisabled: boolean
 }
 
-const SendMessage = ({
-  message,
-  setMessage,
-  handleSend,
-  handleReset,
-  disabled,
-  resetDisabled,
-}: Props) => {
+const SendMessage = ({ message, setMessage, handleSend, disabled }: Props) => {
   const { t } = useTranslation()
 
   return (
@@ -40,13 +31,6 @@ const SendMessage = ({
 
       <Button variant="contained" onClick={handleSend} disabled={disabled}>
         {t('send')}
-      </Button>
-      <Button
-        sx={{ ml: 2 }}
-        onClick={() => handleReset()}
-        disabled={resetDisabled}
-      >
-        {t('reset')}
       </Button>
     </Box>
   )

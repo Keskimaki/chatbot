@@ -27,13 +27,6 @@ const ChatBox = () => {
 
   if (isLoading) return null
 
-  const handleReset = () => {
-    setSystem('')
-    setMessage('')
-    setMessages([])
-    setCompletion('')
-  }
-
   const handleSend = async () => {
     const newMessage: OpenaiMessage = { role: 'user', content: message }
     setMessages((prev) => [...prev, newMessage])
@@ -67,8 +60,6 @@ const ChatBox = () => {
 
   const systemMessageDisabled = messages.length > 0
   const sendDisabled = message.length === 0 || completion !== ''
-  const resetDisabled =
-    messages.length === 0 && system.length === 0 && message.length === 0
 
   return (
     <Box
@@ -95,10 +86,8 @@ const ChatBox = () => {
         <SendMessage
           message={message}
           setMessage={setMessage}
-          handleReset={handleReset}
           handleSend={handleSend}
           disabled={sendDisabled}
-          resetDisabled={resetDisabled}
         />
       </Paper>
     </Box>
