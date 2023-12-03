@@ -67,10 +67,13 @@ const ChatList = () => {
     <Paper
       variant="outlined"
       sx={{
+        py: '50px',
         px: 1,
         height: '100%',
         width: '250px',
         border: '1px solid #ccc',
+        position: 'fixed',
+        overflow: 'scroll',
       }}
     >
       <List sx={{ pt: 2 }}>

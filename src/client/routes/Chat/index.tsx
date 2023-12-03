@@ -5,7 +5,7 @@ import ChatBox from './ChatBox'
 
 const Chat = () => {
   return (
-    <Box display="flex" height="95vh">
+    <Box display="flex">
       <ChatList />
       <ChatBox />
     </Box>

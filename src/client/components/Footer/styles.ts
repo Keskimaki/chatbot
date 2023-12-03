@@ -11,7 +11,7 @@ const styles = {
   footer: (theme: Theme) => ({
     top: 'auto',
     bottom: 0,
-    position: 'fixed',
+    // position: 'fixed',
     backgroundColor: theme.palette.background.default,
     width: '100%',
     borderRadius: 0,

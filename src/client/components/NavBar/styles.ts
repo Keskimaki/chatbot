@@ -5,7 +5,7 @@ const styles = {
     zIndex: (theme: Theme) => theme.zIndex.drawer + 1,
     backgroundColor: '#f5f5f5',
     borderRadius: 0,
-    borderBottom: '1px solid #ccc',
+    borderBottom: '1px solid black',
     py: '1rem',
   },
   toolbar: {

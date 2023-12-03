@@ -4,7 +4,7 @@ import { useNavigate, useParams, Outlet } from 'react-router-dom'
 import { Box } from '@mui/material'
 
 import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
+//import Footer from '../components/Footer'
 import Loading from '../components/common/Loading'
 //import useCurrentUser from '../hooks/useCurrentUser'
 import useChats from '../hooks/useChats'
@@ -43,7 +43,7 @@ const App = () => {
     <Box>
       <NavBar />
       <Outlet />
-      <Footer />
+      {/*<Footer />*/}
     </Box>
   )
 }

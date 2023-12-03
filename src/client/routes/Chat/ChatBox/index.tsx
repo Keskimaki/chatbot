@@ -72,7 +72,9 @@ const ChatBox = () => {
   return (
     <Box
       sx={{
-        margin: '0 auto',
+        my: '0',
+        ml: '250px',
+        mr: 'auto',
         width: '90%',
         padding: '5%',
       }}

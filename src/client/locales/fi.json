@@ -1,6 +1,7 @@
 {
   "common": {
     "appName": "Chatbot",
+    "admin": "Ylläpito",
     "send": "Lähetä",
     "reset": "Tyhjennä"
   },
