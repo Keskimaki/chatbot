@@ -19,6 +19,7 @@ export type ChatWithMessages = Chat & {
 
 export type ChatWithMessageCount = Chat & {
   messageCount: number
+  createdAt: string
 }
 
 export type User = {
