@@ -24,8 +24,8 @@ const ChatBox = () => {
   const [completion, setCompletion] = useState('')
 
   useEffect(() => {
-    if (chat && chat.messages.length > 0) {
-      setSystem(chat.messages[0].content)
+    if (chat) {
+      setSystem(chat.messages[0]?.content ?? '')
       setMessages(chat.messages.slice(1))
     }
   }, [chat])

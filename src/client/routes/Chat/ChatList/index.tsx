@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   Paper,
@@ -27,8 +27,8 @@ const ChatItem = ({ chat }: { chat: ChatWithMessageCount }) => {
       <ListItemButton
         sx={{ borderRadius: 2 }}
         selected={id === chatId}
-        component="a"
-        href={`/c/${id}`}
+        component={Link}
+        to={`/c/${id}`}
       >
         <ListItemText primary={name} secondary={formattedDate} />
       </ListItemButton>
@@ -43,8 +43,8 @@ const NewChatButton = ({ chat }: { chat?: ChatWithMessageCount }) => {
     <ListItem sx={{ p: 0 }}>
       <ListItemButton
         sx={{ borderRadius: 2 }}
-        component="a"
-        href={chat ? `/c/${chat.id}` : '/'}
+        component={Link}
+        to={chat ? `/c/${chat.id}` : '/'}
       >
         <ListItemText primary={t('chat:newConversation')} />
         <ListItemIcon>
