@@ -6,6 +6,7 @@ services:
     image: chatbot
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - STAGING=true
     ports:
       - 3000:3000
       - 8000:8000

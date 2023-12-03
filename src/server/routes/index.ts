@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 
-import { inDevelopment } from '../../config'
+import { inDevelopment, inStaging } from '../../config'
 import developmentMiddleware from '../middleware/development'
 import accessLogger from '../middleware/access'
 import userRouter from './user'
@@ -13,7 +13,7 @@ const router = express()
 router.use(cors())
 router.use(express.json())
 
-if (inDevelopment) router.use(developmentMiddleware)
+if (inDevelopment || inStaging) router.use(developmentMiddleware)
 
 router.use(accessLogger)
 
