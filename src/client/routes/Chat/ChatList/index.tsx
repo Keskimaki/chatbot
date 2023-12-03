@@ -72,6 +72,7 @@ const ChatList = () => {
         height: '100%',
         width: '250px',
         border: '1px solid #ccc',
+        borderRadius: 0,
         position: 'fixed',
         overflow: 'scroll',
       }}
