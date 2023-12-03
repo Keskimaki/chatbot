@@ -27,10 +27,10 @@ jobs:
         uses: azure/container-apps-deploy-action@v2
         with:
           appSourcePath: ${{ github.workspace }}/ 
-          registryUrl: index.docker.io
+          registryUrl: docker.io
           registryUsername: ${{ secrets.CHATBOTSTAGING_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.CHATBOTSTAGING_REGISTRY_PASSWORD }}
           containerAppName: chatbot-staging
           resourceGroup: chatbot-staging
-          imageToBuild: index.docker.io/keskimaki/chatbot:${{ github.sha }}
+          imageToBuild: docker.io/keskimaki/chatbot:${{ github.sha }}
           dockerfilePath: Containerfile
