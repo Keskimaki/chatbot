@@ -2,7 +2,7 @@ import { roles } from './config'
 
 export type Role = (typeof roles)[number]
 
-export type OpenaiMessage = {
+export type Message = {
   role: Role
   content: string
 }

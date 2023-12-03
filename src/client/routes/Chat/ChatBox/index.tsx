@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { Box, Paper } from '@mui/material'
 
-import { OpenaiMessage } from '../../../../types'
+import { Message } from '../../../../types'
 import SystemMessage from './SystemMessage'
 import Conversation from './Conversation'
 import SendMessage from './SendMessage'
@@ -20,7 +20,7 @@ const ChatBox = () => {
 
   const [system, setSystem] = useState('')
   const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState<OpenaiMessage[]>([])
+  const [messages, setMessages] = useState<Message[]>([])
   const [completion, setCompletion] = useState('')
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const ChatBox = () => {
   if (isLoading || !chat) return null
 
   const handleSend = async () => {
-    const newMessage: OpenaiMessage = { role: 'user', content: message }
+    const newMessage: Message = { role: 'user', content: message }
     setMessages((prev) => [...prev, newMessage])
     setMessage('')
 

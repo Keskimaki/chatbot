@@ -1,5 +1,6 @@
 import express from 'express'
 
+import { Message } from '../../types'
 import { openaiStreamSchema } from '../validators/openai'
 import { createCompletionStream, generateChatTitle } from '../services/openai'
 import { getChatAndMessages, updateChatTitle } from '../services/chat'
@@ -25,8 +26,8 @@ openaiRouter.post('/stream', async (req, res) => {
     res.write(delta)
   })
 
-  const systemMessage = messages.at(0)
-  const newMessage = messages.at(-1)
+  const systemMessage = messages.at(0) as Message
+  const newMessage = messages.at(-1) as Message
   const chatCompletion = await stream.finalChatCompletion()
 
   if (messages.length === 2)

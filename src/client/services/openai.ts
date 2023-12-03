@@ -1,4 +1,4 @@
-import { OpenaiMessage } from '../../types'
+import { Message } from '../../types'
 
 import queryClient from '../util/queryClient'
 import { queryKey } from '../hooks/useChats'
@@ -7,7 +7,7 @@ export const getCompletionStream = async (
   chatId: string,
   model: string,
   system: string,
-  messages: OpenaiMessage[]
+  messages: Message[]
 ) => {
   const response = await fetch('/api/openai/stream', {
     method: 'POST',
