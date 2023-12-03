@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, Outlet } from 'react-router-dom'
+import { Box } from '@mui/material'
 
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
 import Loading from '../components/common/Loading'
 //import useCurrentUser from '../hooks/useCurrentUser'
 import useChats from '../hooks/useChats'
@@ -35,6 +38,14 @@ const App = () => {
   }, [chatId, chats])
 
   if (chatsLoading) return <Loading />
+
+  return (
+    <Box>
+      <NavBar />
+      <Outlet />
+      <Footer />
+    </Box>
+  )
 }
 
 export default App

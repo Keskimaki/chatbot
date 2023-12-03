@@ -1,15 +1,25 @@
-import { Box } from '@mui/material'
-import { Outlet } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 
-import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
+import useTheme from '../theme.ts'
+import router from './router.tsx'
+import queryClient from '../util/queryClient'
 
-const Root = () => (
-  <Box>
-    <NavBar />
-    <Outlet />
-    <Footer />
-  </Box>
-)
+const Root = () => {
+  const theme = useTheme()
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+          <RouterProvider router={router} />
+        </CssBaseline>
+      </ThemeProvider>
+    </QueryClientProvider>
+  )
+}
 
 export default Root

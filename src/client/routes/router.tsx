@@ -1,18 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import Root from './Root.tsx'
 import App from './App.tsx'
 import Chat from './Chat'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <App />,
     children: [
-      {
-        path: '/',
-        element: <App />,
-      },
       {
         path: '/c/:chatId',
         element: <Chat />,
