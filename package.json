@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "docker compose up",
+    "prod": "NODE_ENV=production node --loader @swc-node/register/esm src/server/main.ts",
     "dev": "NODE_ENV=development concurrently \"nodemon --exec node --loader @swc-node/register/esm src/server/main.ts\" \"vite\"",
     "build": "tsc && vite build",
     "db": "docker exec -it chatbot_db psql -U postgres",

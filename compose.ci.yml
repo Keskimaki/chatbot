@@ -1,0 +1,21 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Containerfile
+    image: chatbot
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+    ports:
+      - 3000:3000
+      - 8000:8000
+    container_name: chatbot
+
+  db:
+    image: docker.io/postgres:16.1-alpine3.18
+    environment:
+      - PGDATA=/data
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    container_name: chatbot_db
