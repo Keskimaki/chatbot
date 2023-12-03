@@ -32,5 +32,5 @@ jobs:
           registryPassword: ${{ secrets.CHATBOTSTAGING_REGISTRY_PASSWORD }}
           containerAppName: chatbot-staging
           resourceGroup: chatbot-staging
-          imageToBuild: docker.io/keskimaki/chatbot:${{ github.sha }}
+          imageToBuild: keskimaki/chatbot:${{ github.sha }}
           dockerfilePath: Containerfile
