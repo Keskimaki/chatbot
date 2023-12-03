@@ -1,16 +1,13 @@
 name: Trigger auto deployment for chatbot-staging
 
-# When this action will be executed
 on:
-  # Automatically trigger it when detected changes in repo
   push:
     branches: 
       [ main ]
     paths:
-    - 'Containerfile/**'
-    - '.github/workflows/chatbot-staging-AutoDeployTrigger-a363ffbb-806c-4cbe-9522-690a12903d49.yml'
+    - 'Containerfile'
+    - '.github/workflows/staging.yml'
 
-  # Allow manual trigger 
   workflow_dispatch:
       
 jobs:
@@ -29,14 +26,11 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
-          appSourcePath: ${{ github.workspace }}/Containerfile 
+          appSourcePath: ${{ github.workspace }}/ 
           registryUrl: index.docker.io
           registryUsername: ${{ secrets.CHATBOTSTAGING_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.CHATBOTSTAGING_REGISTRY_PASSWORD }}
           containerAppName: chatbot-staging
           resourceGroup: chatbot-staging
           imageToBuild: index.docker.io/keskimaki/chatbot:${{ github.sha }}
-          dockerfilePath: Dockerfile
-
-     
-
+          dockerfilePath: Containerfile
