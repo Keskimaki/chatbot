@@ -1,8 +1,10 @@
-const { DataTypes } = require('sequelize')
+import { DataTypes } from 'sequelize'
+
+import { Migration } from '../connection'
 
 const roles = ['system', 'assistant', 'user']
 
-const up = async ({ context: queryInterface }) => {
+export const up: Migration = async ({ context: queryInterface }) => {
   await queryInterface.changeColumn('messages', 'user_id', {
     type: DataTypes.UUID,
     allowNull: true,
@@ -17,7 +19,7 @@ const up = async ({ context: queryInterface }) => {
   })
 }
 
-const down = async ({ context: queryInterface }) => {
+export const down: Migration = async ({ context: queryInterface }) => {
   await queryInterface.changeColumn('messages', 'user_id', {
     type: DataTypes.UUID,
     allowNull: false,
@@ -25,5 +27,3 @@ const down = async ({ context: queryInterface }) => {
   await queryInterface.removeColumn('messages', 'model')
   await queryInterface.removeColumn('messages', 'role')
 }
-
-module.exports = { up, down }

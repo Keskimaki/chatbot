@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
+import '@swc-node/register'
 import { Sequelize } from 'sequelize'
 import { Umzug, SequelizeStorage } from 'umzug'
 
@@ -10,7 +11,7 @@ const DB_CONNECTION_RETRY_LIMIT = 10
 export const sequelize = new Sequelize(DATABASE_URL, { logging: false })
 
 const umzug = new Umzug({
-  migrations: { glob: 'src/server/db/migrations/*.cjs' },
+  migrations: { glob: 'src/server/db/migrations/*.ts' },
   context: sequelize.getQueryInterface(),
   storage: new SequelizeStorage({ sequelize }),
   logger: console,

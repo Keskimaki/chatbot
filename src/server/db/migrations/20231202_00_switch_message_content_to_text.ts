@@ -1,17 +1,17 @@
-const { DataTypes } = require('sequelize')
+import { DataTypes } from 'sequelize'
 
-const up = async ({ context: queryInterface }) => {
+import { Migration } from '../connection'
+
+export const up: Migration = async ({ context: queryInterface }) => {
   await queryInterface.changeColumn('messages', 'content', {
     type: DataTypes.TEXT,
     allowNull: false,
   })
 }
 
-const down = async ({ context: queryInterface }) => {
+export const down: Migration = async ({ context: queryInterface }) => {
   await queryInterface.changeColumn('messages', 'content', {
     type: DataTypes.STRING,
     allowNull: false,
   })
 }
-
-module.exports = { up, down }

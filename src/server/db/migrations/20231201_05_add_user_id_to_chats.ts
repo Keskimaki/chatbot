@@ -1,6 +1,8 @@
-const { DataTypes } = require('sequelize')
+import { DataTypes } from 'sequelize'
 
-const up = async ({ context: queryInterface }) => {
+import { Migration } from '../connection'
+
+export const up: Migration = async ({ context: queryInterface }) => {
   await queryInterface.addColumn('chats', 'user_id', {
     type: DataTypes.UUID,
     allowNull: false,
@@ -11,8 +13,6 @@ const up = async ({ context: queryInterface }) => {
   })
 }
 
-const down = async ({ context: queryInterface }) => {
+export const down: Migration = async ({ context: queryInterface }) => {
   await queryInterface.removeColumn('chats', 'user_id')
 }
-
-module.exports = { up, down }

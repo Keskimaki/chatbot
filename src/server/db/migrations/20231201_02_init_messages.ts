@@ -1,6 +1,8 @@
-const { DataTypes } = require('sequelize')
+import { DataTypes } from 'sequelize'
 
-const up = ({ context: queryInterface }) =>
+import { Migration } from '../connection'
+
+export const up: Migration = ({ context: queryInterface }) =>
   queryInterface.createTable('messages', {
     id: {
       type: DataTypes.UUID,
@@ -37,7 +39,5 @@ const up = ({ context: queryInterface }) =>
     },
   })
 
-const down = ({ context: queryInterface }) =>
+export const down: Migration = ({ context: queryInterface }) =>
   queryInterface.dropTable('messages')
-
-module.exports = { up, down }
