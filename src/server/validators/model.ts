@@ -13,6 +13,7 @@ export const promptSchema = z.object({
 })
 
 export const completionSchema = z.object({
+  chatId: z.string().uuid(),
   model: z.string().min(1).max(255),
   prompt: promptSchema,
 })
