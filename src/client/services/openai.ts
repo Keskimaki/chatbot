@@ -9,7 +9,7 @@ export const getCompletionStream = async (
   system: string,
   messages: Message[]
 ) => {
-  const response = await fetch('/api/openai/stream', {
+  const response = await fetch('/api/models/stream', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,13 +17,10 @@ export const getCompletionStream = async (
     body: JSON.stringify({
       chatId,
       model,
-      messages: [
-        {
-          role: 'system',
-          content: system,
-        },
-        ...messages,
-      ],
+      prompt: {
+        system,
+        messages,
+      },
     }),
   })
 

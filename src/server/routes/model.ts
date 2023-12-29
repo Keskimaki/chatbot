@@ -1,14 +1,42 @@
 import express from 'express'
 
-import { createCompletionStream, parseChunk } from '../services/model'
+import {
+  createCompletionStream as createOpenAiStream,
+  parsePrompt as parseOpenAiPrompt,
+} from '../services/openai'
+import {
+  createCompletionStream,
+  parseChunk,
+  parseModelPrompt,
+} from '../services/model'
 import { completionSchema } from '../validators/model'
+
+const openAiModels = ['gpt-3.5-turbo', 'gpt-4']
 
 const modelRouter = express()
 
 modelRouter.post('/stream', async (req, res) => {
-  const { prompt } = completionSchema.parse(req.body)
+  const { model, prompt } = completionSchema.parse(req.body)
 
-  const reader = await createCompletionStream(prompt)
+  if (openAiModels.includes(model)) {
+    console.log('openai')
+    const messages = parseOpenAiPrompt(prompt)
+    const stream = createOpenAiStream({ model, messages })
+
+    res.setHeader('content-type', 'text/plain')
+
+    stream.on('content', (delta) => {
+      res.write(delta)
+    })
+
+    await stream.finalChatCompletion()
+
+    return res.end()
+  }
+
+  const parsedPrompt = parseModelPrompt(prompt)
+
+  const reader = await createCompletionStream(parsedPrompt)
   const decoder = new TextDecoder('utf-8')
 
   res.setHeader('content-type', 'text/plain')
@@ -25,7 +53,7 @@ modelRouter.post('/stream', async (req, res) => {
     res.write(event.token)
   }
 
-  res.end()
+  return res.end()
 })
 
 export default modelRouter
