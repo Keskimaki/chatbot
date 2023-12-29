@@ -18,7 +18,7 @@ export const createCompletion = async (prompt: string) => {
   return completion
 }
 
-const parseChunk = (chunk: string) => {
+export const parseChunk = (chunk: string) => {
   const [_, data] = chunk.split('data: ')
 
   if (!data) return { token: '' }
@@ -38,19 +38,7 @@ export const createCompletionStream = async (prompt: string) => {
   })
 
   const reader = response.body?.getReader()
-  const decoder = new TextDecoder('utf-8')
-
   if (!reader) throw new Error('Stream connection failed')
 
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const { done, value } = await reader.read()
-
-    if (done) break
-
-    const chunk = decoder.decode(value)
-    const event = parseChunk(chunk)
-
-    console.log(event)
-  }
+  return reader
 }
