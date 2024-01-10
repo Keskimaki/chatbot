@@ -1,6 +1,6 @@
 import OpenAI from 'openai'
 
-import { ChatOptions, Prompt } from '../types'
+import { ChatOptions } from '../types'
 import { Message } from '../db/models'
 import { OPENAI_API_KEY } from '../util/config'
 import { chatTitleSchema } from '../validators/openai'
@@ -46,15 +46,4 @@ export const generateChatTitle = async (messages: Message[]) => {
   const { title } = chatTitleSchema.parse(JSON.parse(content))
 
   return title
-}
-
-export const parsePrompt = (prompt: Prompt) => {
-  const { system, messages } = prompt
-
-  const systemMessage = {
-    role: 'system' as const,
-    content: system,
-  }
-
-  return [systemMessage, ...messages]
 }

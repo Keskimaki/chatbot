@@ -39,7 +39,7 @@ const ChatBox = () => {
 
     const stream = await getCompletionStream(
       chatId as string,
-      'mixtral-8x7b',
+      'gpt-3.5-turbo',
       system,
       messages.concat(newMessage)
     )
@@ -62,7 +62,8 @@ const ChatBox = () => {
     setMessages((prev) => [...prev, { role: 'assistant', content }])
     setCompletion('')
 
-    // if (chat.name === t('chat:newConversation')) await generateChatTitle(chatId as string)
+    if (chat.name === t('chat:newConversation'))
+      await generateChatTitle(chatId as string)
   }
 
   const systemMessageDisabled = messages.length > 0

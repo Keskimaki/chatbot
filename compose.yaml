@@ -6,7 +6,6 @@ services:
     image: chatbot_dev
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
-      - MODEL_API_URL=http://model:5001/api
     volumes:
       - ./:/opt/app-root/src
     ports:
@@ -24,17 +23,6 @@ services:
     volumes:
       - pg_data:/data
     container_name: chatbot_db
-
-  model:
-    build:
-      context: ./
-      dockerfile: model.Containerfile
-    image: model
-    container_name: model
-    ports:
-      - 5001:5001
-    volumes:
-      - ./models:/opt/app-root/src/models
 
 volumes:
   pg_data:
