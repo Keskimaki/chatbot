@@ -1,8 +1,9 @@
 import OpenAI from 'openai'
 
+import { Message as MessageType } from '../../types'
 import { Message } from '../db/models'
 
-export const saveSystemMessage = async (
+const saveSystemMessage = async (
   userId: string,
   chatId: string,
   content: string
@@ -17,7 +18,7 @@ export const saveSystemMessage = async (
   return savedMessage
 }
 
-export const saveUserMessage = async (
+const saveUserMessage = async (
   userId: string,
   chatId: string,
   content: string
@@ -32,7 +33,7 @@ export const saveUserMessage = async (
   return savedMessage
 }
 
-export const saveOpenaiMessage = async (
+const saveOpenaiMessage = async (
   userId: string,
   chatId: string,
   model: string,
@@ -49,4 +50,27 @@ export const saveOpenaiMessage = async (
   })
 
   return savedMessage
+}
+
+export const saveNewMessages = async (
+  messages: MessageType[],
+  {
+    chatId,
+    userId,
+    model,
+    chatCompletion,
+  }: {
+    chatId: string
+    userId: string
+    model: string
+    chatCompletion: OpenAI.ChatCompletion
+  }
+) => {
+  const systemMessage = messages.at(0) as MessageType
+  const newMessage = messages.at(-1) as MessageType
+
+  if (messages.length === 2)
+    await saveSystemMessage(userId, chatId, systemMessage.content)
+  await saveUserMessage(userId, chatId, newMessage.content)
+  await saveOpenaiMessage(userId, chatId, model, chatCompletion)
 }
