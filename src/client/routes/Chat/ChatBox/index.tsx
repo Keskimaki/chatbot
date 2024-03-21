@@ -39,7 +39,7 @@ const ChatBox = () => {
 
     const stream = await getCompletionStream(
       chatId as string,
-      'gpt-3.5-turbo',
+      'gpt-4',
       system,
       messages.concat(newMessage)
     )
