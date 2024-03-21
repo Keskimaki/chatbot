@@ -17,7 +17,6 @@ import {
 import { AdminPanelSettingsOutlined, Language } from '@mui/icons-material'
 
 import styles from './styles'
-import placeholderLogo from '../../assets/placeholder.svg'
 import useCurrentUser from '../../hooks/useCurrentUser'
 
 const LanguageSelector = () => {
@@ -102,7 +101,6 @@ const NavBar = () => {
     <AppBar position="sticky" sx={styles.appbar}>
       <Toolbar sx={styles.toolbar}>
         <Box sx={styles.navBox}>
-          <img src={placeholderLogo} alt="placeholder logo" width="40" />
           <Box ml="2rem">
             <Typography sx={styles.appName}>{t('appName')}</Typography>
           </Box>
