@@ -13,6 +13,8 @@ import {
 } from '../../../services/openai'
 import useChat from '../../../hooks/useChat'
 
+const defaultSystem = 'You are a helpful programming assistant.'
+
 const ChatBox = () => {
   const { t } = useTranslation()
   const { chatId } = useParams()
@@ -23,9 +25,11 @@ const ChatBox = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [completion, setCompletion] = useState('')
 
+  console.log(defaultSystem)
+
   useEffect(() => {
     if (chat) {
-      setSystem(chat.messages[0]?.content ?? '')
+      setSystem(chat.messages[0]?.content ?? defaultSystem)
       setMessages(chat.messages.slice(1))
     }
   }, [chat])
